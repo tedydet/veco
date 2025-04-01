@@ -55,4 +55,6 @@ endef
 
 define $(package)_preprocess_cmds
   for i in $($(package)_patches); do patch -N -p1 < $($(package)_patch_dir)/$$$$i; done
+  sed -i 's/} blake2s_state;/} __attribute__((aligned(64))) blake2s_state;/' contrib/relic/src/md/blake2.h && \
+  sed -i 's/} blake2b_state;/} __attribute__((aligned(64))) blake2b_state;/' contrib/relic/src/md/blake2.h
 endef
