@@ -156,6 +156,7 @@ define $(package)_preprocess_cmds
 endef
 
 define $(package)_config_cmds
+  chmod +x qtbase/configure && \
   export PKG_CONFIG_LIBDIR=$(host_prefix)/lib/pkgconfig && \
   export PKG_CONFIG_PATH=$(host_prefix)/share/pkgconfig  && \
   ./configure $($(package)_config_opts) && \
